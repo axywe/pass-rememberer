@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Rememberer</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input {
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="type" placeholder="Type text here">
+    <h2 id="text">Your text would save here</h2>
+    <div>Correct ans: <span id="correct">0</span></div>
+</body>
+<script>
+    var i = -1;
+    var type = document.getElementById('type');
+    type.focus()
+    var text = document.getElementById('text');
+    var textvalue;
+    var correct = document.getElementById('correct')
+    type.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            if (e.shiftKey === true) {
+                type.value = ''
+            }
+            if (i == -1) {
+                text.innerHTML = type.value;
+                textvalue = type.value;
+                i++;
+            } else if (textvalue == type.value) {
+                i++;
+                correct.innerHTML = i;
+                type.style.backgroundColor = '#39ff14';
+                setTimeout(() => {
+                    type.style.backgroundColor = "initial";
+                }, 500)
+            } else if (textvalue != type.value) {
+                type.style.backgroundColor = '#FF6347';
+                setTimeout(() => {
+                    type.style.backgroundColor = "initial";
+                }, 500)
+                return false
+            }
+            type.value = ''
+        }
+    })
+</script>
+
+</html>
