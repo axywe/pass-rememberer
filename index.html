@@ -21,8 +21,25 @@
     <input id="type" placeholder="Type text here">
     <h2 id="text">Your text would save here</h2>
     <div>Correct ans: <span id="correct">0</span></div>
+    <div id='diff'></div>
 </body>
 <script>
+function getDifference(a, b)
+    {
+        var i = 0;
+        var j = 0;
+        var result = "";
+
+        while (j < b.length)
+        {
+         if (a[i] != b[j] || i == a.length)
+             result += b[j];
+         else
+             i++;
+         j++;
+        }
+        return result;
+    }
     var i = -1;
     var type = document.getElementById('type');
     type.focus()
@@ -32,6 +49,7 @@
     type.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
+            document.getElementById('diff').innerHTML = ''
             if (e.shiftKey === true) {
                 type.value = ''
             }
@@ -47,6 +65,7 @@
                     type.style.backgroundColor = "initial";
                 }, 500)
             } else if (textvalue != type.value) {
+                document.getElementById('diff').innerHTML = getDifference(textvalue, type.value)
                 type.style.backgroundColor = '#FF6347';
                 setTimeout(() => {
                     type.style.backgroundColor = "initial";
