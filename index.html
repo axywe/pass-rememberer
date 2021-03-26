@@ -20,6 +20,7 @@
 <body>
     <input id="type" placeholder="Type text here">
     <h2 id="text">Your text would save here</h2>
+    <br><button onclick='hide()'>hide</button>
     <div>Correct ans: <span id="correct">0</span></div>
     <div id='diff'></div>
 </body>
@@ -75,6 +76,14 @@ function getDifference(a, b)
             type.value = ''
         }
     })
+    function hide(){
+    if(text.style.display == 'none'){
+        text.style.display = ''
+    }else{
+        text.style.display = 'none'
+    }
+    
+}
 </script>
 
 </html>
